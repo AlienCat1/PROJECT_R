@@ -11,6 +11,11 @@ import Tutorial from './majorComponents/Tutorial'
 import useForceUpdate from 'use-force-update'
 import Users from './user.json'
 import { useState } from 'react'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './styles/Theme'
+import { Wrapper } from './styles/LoginWrapper'
+import { GlobalStyle } from './styles/GlobalStyle'
+import { Button } from './styles/Button'
 
 const App = () => {
 
@@ -42,24 +47,37 @@ const App = () => {
   var user = localStorage.getItem('loggedin')
     if (user===null || user==='') {
       return(
-        <>
-         <h2>LOGIN</h2>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+        <Wrapper>
+         <h2 className='common-heading'>LOGIN</h2>
          <hr/>
-         <input type='text' placeholder='Username' value={username} onChange={e=>setUsername(e.target.value)} /> <br/>
+         <div className='container'>
+          <div className='login-form'>
+            <div className='login-inputs'>
+             <input type='text' placeholder='Username' value={username} onChange={e=>setUsername(e.target.value)} /> <br/>
 
-         <input type={displayType? 'password':'text'} placeholder='Password' value={password} onChange={e=>setPassword(e.target.value)}/>
-         <button onClick={()=>{setDisplayType(!displayType)}}>{displayType? 'Show':'Hide'}</button> <br/>
-
-         <button onClick={()=>{handleLogin(); forceUpdate()}}>LOGIN</button>
-        </>
+             <input type={displayType? 'password':'text'} placeholder='Password' value={password} onChange={e=>setPassword(e.target.value)}/><br/>
+             
+             <Button onClick={()=>{setDisplayType(!displayType)}}>{displayType? 'Show password':'Hide password'}</Button>
+             <Button onClick={()=>{handleLogin(); forceUpdate()}}>LOGIN</Button>
+            </div>
+          </div>
+         </div>         
+        </Wrapper>
+        </ThemeProvider>
       )
     } else {
       return(
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
         <BrowserRouter>
           <div>
            <Header />
-           <h3>Welcome {localStorage.getItem('loggedin')}</h3>
-           <button onClick={()=>{handleLogout(); forceUpdate()}}>LOGOUT</button>
+           <div className='welcome'>
+             <a>Welcome {localStorage.getItem('loggedin')}</a>
+             <Button onClick={()=>{handleLogout(); forceUpdate()}}>LOGOUT</Button>
+           </div>
           </div>
           <Routes>
            <Route path='/' element={<Home/>} />
@@ -70,6 +88,7 @@ const App = () => {
            <Route path='/tutorial' element={<Tutorial/>} />
           </Routes>
         </BrowserRouter>
+        </ThemeProvider>
       )
     }
 }
