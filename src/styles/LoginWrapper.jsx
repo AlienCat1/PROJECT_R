@@ -4,7 +4,28 @@ export const Wrapper = styled.section`
     padding: 9rem 0 5rem 0;
     h2 {
       text-align: center
-    } 
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+    .popup-inner {
+      position: relative;
+      padding: 32px;
+      width: 100%;
+      max-width: 640px;
+      background-color: #FFF;
+    }
+    .content {
+      text-align: center;
+    }
     .container {
       margin-top: 2rem;
       text-align: center;
