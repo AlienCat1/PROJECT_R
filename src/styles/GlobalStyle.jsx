@@ -50,6 +50,9 @@ h4 {
   font-size: 2.4rem;
  font-weight: 200;
 }
+span {
+  color: red
+}
 p {
   color: ${({ theme }) => theme.colors.text};
   opacity: .7;

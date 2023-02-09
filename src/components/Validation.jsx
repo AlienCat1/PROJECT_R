@@ -19,7 +19,7 @@ const Validation = (values) => {
     } else if (!regex2.test(values.username)) {
         errors.username="Username length must be 6-16 characters and two special characters shouldn't be used consecutively"
     } else {
-        errors="No"
+        errors.usernames="No"
     }
 
     if (!values.email) {
@@ -27,7 +27,7 @@ const Validation = (values) => {
     } else if (!regex3.test(values.email)) {
         errors.email="Invalid Email"
     } else {
-        errors="No"
+        errors.emails="No"
     }
 
     if (!values.password) {
@@ -37,13 +37,15 @@ const Validation = (values) => {
     } else if (!regex5.test(values.password)) {
         errors.password="Password length must be 8-16 characters"
     } else {
-        errors="No"
+        errors.passwords="No"
     }
 
-    if (values.confirmPassword!==values.password) {
-        errors.confirmPassword="Password mismatch. Kindly check input fields"
+    if (!values.confirmPassword) {
+        errors.confirmPassword="This field is required"
+    } else if (values.confirmPassword!==values.password) {
+        errors.confirmPassword="Mismatch. Kindly check input fields"
     } else {
-        errors="No"
+        errors.confirm="No"
     }
 
   return errors

@@ -38,6 +38,10 @@ const App = () => {
   const[password, setPassword] = useState('')
   const[displayType, setDisplayType] = useState(true)
 
+  useEffect(()=>{
+    localStorage.setItem('data', "")
+  },[])
+
   const handleClick = () => {
     setShowPopup(true)
   }
@@ -64,8 +68,8 @@ const App = () => {
     setErrors(Validation(values))    
   }
   
-  useEffect(()=>{
-    if (JSON.stringify(errors)==='"No"') {
+  useEffect(()=>{  
+    if (JSON.stringify(errors.usernames && errors.emails && errors.passwords && errors.confirm)==='"No"') {
       localStorage.setItem('data', JSON.stringify(values))      
       alert('SIGNUP successful. You can LOGIN now using registered credentials.')
       setValues({
@@ -81,12 +85,17 @@ const App = () => {
 
   const handleLogin = () => {
 
-    if (username.length==0){
-      alert('Username cannot be empty')
-    }else{
+    if (localStorage.getItem('data')==="") {
+      alert("Kindly register to continue")
+      setUsername('')
+      setPassword('')
+      setRegisteredUser(false)
+    }else if (username.length==0){
+        alert('Username cannot be empty')
+     } else {
      const auth = JSON.parse(localStorage.getItem('data'))
     //  console.log(auth)
-       if (auth.username===username) {
+        if (auth.username===username) {
          if (auth.password===password) {
            localStorage.setItem('loggedin', username)
            setUsername('')
