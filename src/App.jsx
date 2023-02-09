@@ -32,9 +32,7 @@ const App = () => {
     confirmPassword:''
   })
 
-  const[errors, setErrors]=useState({    
-    errorvalue:'No Error'
-  })
+  const[errors, setErrors]=useState({})
 
   const[username, setUsername] = useState('')
   const[password, setPassword] = useState('')
