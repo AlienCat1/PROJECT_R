@@ -23,7 +23,7 @@ const App = () => {
   const forceUpdate = useForceUpdate()
   
   const[showPopup, setShowPopup] = useState(false)
-  const[registeredUser, setRegisteredUser] = useState(true)
+  const[registeredUser, setRegisteredUser] = useState(false)
 
   const[values, setValues]=useState({
     username:'',
