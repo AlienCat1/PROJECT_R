@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "username": "random1",
+      "email": "random1@test.com",
+      "password": "Random@1",
+      "confirmPassword": "Random@1",
+      "id": 1
+    },
+    {
+      "username": "random2",
+      "email": "random2@test.com",
+      "password": "Random@2",
+      "confirmPassword": "Random@2",
+      "id": 2
+    },
+    {
+      "username": "random3",
+      "email": "random3@test.com",
+      "password": "Random@3",
+      "confirmPassword": "Random@3",
+      "id": 3
+    },
+    {
+      "username": "random4",
+      "email": "random4@test.com",
+      "password": "Random@4",
+      "confirmPassword": "Random@4",
+      "id": 4
+    },
+    {
+      "username": "san.andres_",
+      "email": "san.andres@gta.com",
+      "password": "Gta@1234",
+      "confirmPassword": "Gta@1234",
+      "id": 5
+    },
+    {
+      "username": "random1",
+      "email": "random1@gmail.com",
+      "password": "Random@1",
+      "confirmPassword": "Random@1",
+      "id": 6
+    }
+  ]
+}

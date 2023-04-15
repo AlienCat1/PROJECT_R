@@ -23,7 +23,7 @@ const App = () => {
   const forceUpdate = useForceUpdate()
   
   const[showPopup, setShowPopup] = useState(false)
-  const[registeredUser, setRegisteredUser] = useState(false)
+  const[registeredUser, setRegisteredUser] = useState(true)
 
   const[values, setValues]=useState({
     username:'',
@@ -38,23 +38,40 @@ const App = () => {
   const[password, setPassword] = useState('')
   const[displayType, setDisplayType] = useState(true)
 
-  useEffect(()=>{
-    localStorage.setItem('data', "")
-  },[])
-
   const handleClick = () => {
     setShowPopup(true)
   }
 
   const cancelPopup = () => {
+    setUsername('')
+    setPassword('')
+    setDisplayType(true)
+    setValues({
+      username:'',
+      email:'',
+      password:'',
+      confirmPassword:''
+    })
+    setErrors({})
     setShowPopup(false)
+    setRegisteredUser(true)
   }
 
   const bringSignup = () => {
+    setUsername('')
+    setPassword('')
+    setDisplayType(true)
     setRegisteredUser(false)
   }
 
   const bringLogin = () => {
+    setValues({
+      username:'',
+      email:'',
+      password:'',
+      confirmPassword:''
+    })
+    setErrors({})
     setRegisteredUser(true)
   }
 
@@ -70,8 +87,16 @@ const App = () => {
   
   useEffect(()=>{  
     if (JSON.stringify(errors.usernames && errors.emails && errors.passwords && errors.confirm)==='"No"') {
-      localStorage.setItem('data', JSON.stringify(values))      
-      alert('SIGNUP successful. You can LOGIN now using registered credentials.')
+      let data = JSON.stringify(values)
+      fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          'Accept':'application/json',
+          'Content-Type':'application/json'
+        },
+        body:data
+      }),
+      alert('SIGNUP Successful.')
       setValues({
         username:'',
         email:'',
@@ -85,29 +110,29 @@ const App = () => {
 
   const handleLogin = () => {
 
-    if (localStorage.getItem('data')==="") {
-      alert("Kindly register to continue")
-      setUsername('')
-      setPassword('')
-      setRegisteredUser(false)
-    }else if (username.length==0){
-        alert('Username cannot be empty')
-     } else {
-     const auth = JSON.parse(localStorage.getItem('data'))
-    //  console.log(auth)
-        if (auth.username===username) {
-         if (auth.password===password) {
-           localStorage.setItem('loggedin', username)
-           setUsername('')
-           setPassword('')
-           setShowPopup(false)
-          }else{
-             alert('Incorrect Password!')
-            }
-        }else{
-           alert('No User Found!')
-          }
-    }
+    if (username.length==0){
+      alert('Username cannot be empty')
+    } else if (password.length==0) {
+      alert('Password cannot be empty')
+    } else {
+       fetch("http://localhost:3000/users").then((result)=>{
+          result.json().then((resp)=>{
+            const auth = resp.filter(d=>d.username===username)
+            if (auth.length==0) {
+              alert('Invalid Credentials')
+            } else {
+               if (auth[0].password===password) {
+                 localStorage.setItem('loggedin', username)
+                 setUsername('')
+                 setPassword('')
+                 setShowPopup(false)
+                } else {
+                   alert('Invalid Credentials')
+                  }
+              }
+          })
+        })        
+      }
   }
 
   const handleLogout=()=>{
