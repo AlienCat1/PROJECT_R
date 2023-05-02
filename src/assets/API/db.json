@@ -22,10 +22,10 @@
       "id": 3
     },
     {
-      "username": "random4",
-      "email": "random4@test.com",
-      "password": "Random@4",
-      "confirmPassword": "Random@4",
+      "username": "super.mario_",
+      "email": "mario@queen.com",
+      "password": "Mario@1234",
+      "confirmPassword": "Mario@1234",
       "id": 4
     },
     {
@@ -36,11 +36,25 @@
       "id": 5
     },
     {
-      "username": "random1",
-      "email": "random1@gmail.com",
-      "password": "Random@1",
-      "confirmPassword": "Random@1",
+      "username": "ramiro.tod_",
+      "email": "ramiro@tod.com",
+      "password": "Tod@1234",
+      "confirmPassword": "Tod@1234",
       "id": 6
+    },
+    {
+      "username": "ram.moodapally_",
+      "email": "moodapallysriram@gmail.com",
+      "password": "Ram@1234",
+      "confirmPassword": "Ram@1234",
+      "id": 7
+    },
+    {
+      "username": "random11",
+      "email": "random11@test.com",
+      "password": "Random@11",
+      "confirmPassword": "Random@11",
+      "id": 8
     }
   ]
 }
